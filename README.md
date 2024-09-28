@@ -6,12 +6,27 @@ https://wokwi.com/projects/410187774024993793
 Este projeto demonstra como usar um microcontrolador ESP32 para ler dados de temperatura de um sensor DS18B20 e publicar esses dados em um broker MQTT. Além disso, as mensagens são exibidas em um display(LCD) e o sistema é capaz de receber mensagens do broker.
 
 ## Componentes Necessários
+- #### Dispositivos IoT
+- **Microcontrolador ESP32**: Responsável por coletar dados de temperatura do sensor e se comunicar com o broker MQTT.
+- **Sensor de Temperatura DS18B20**: Sensor que mede a temperatura ambiente.
+- **Display LCD (I2C)**: Exibe a temperatura atual e mensagens recebidas.
 
-- Microcontrolador ESP32
-- Sensor de Temperatura DS18B20
-- Display LCD (I2C)
-- Fios Jumper
-- Placa de Protótipo (opcional)
+#### Back-end
+- **Broker MQTT**: Um servidor (por exemplo, HiveMQ) que gerencia as mensagens publicadas e assinadas pelos dispositivos.
+- **Node-RED**: Uma ferramenta de programação visual que permite integrar diferentes serviços e manipular os dados recebidos do MQTT.
+
+#### Front-end
+- O node-red exibe um pequeno grafico com as informacões obitidas pelos sensores.
+
+### Diagrama de Arquitetura
+
+```plaintext
+[Sensor DS18B20] --(Dados de Temperatura)--> [ESP32] --(MQTT)--> [Broker MQTT]
+                             |
+                            (Display)
+                             |
+                   [Node-RED] --(Visualização)
+```
 
 ## Bibliotecas Utilizadas
 
@@ -70,12 +85,44 @@ StaticJsonDocument<TAMANHO> json;
 json["temperatura"] = temp;
 ```
 
-## Uso
+## Instruções de Uso
 
-1. Faça o upload do código para o ESP32 usando o Arduino IDE.
-2. Abra o Monitor Serial para visualizar o status da conexão e as leituras de temperatura.
-3. O LCD exibirá a temperatura atual.
-4. Qualquer mensagem enviada para o tópico `fiap/techadvanced/msg` será exibida no LCD.
+1. **Configuração Inicial**:
+   - Conecte todos os dispositivos conforme o diagrama de arquitetura.
+   - Assegure que o ESP32 está alimentado e conectado à rede Wi-Fi.
+
+2. **Código**:
+   - Abra o Arduino IDE e configure o SSID e a senha do Wi-Fi.
+   - Faça o upload do código para o ESP32.
+
+3. **Monitoramento**:
+   - Abra o Monitor Serial no Arduino IDE para verificar a conexão e as leituras.
+   - O LCD mostrará a temperatura em tempo real.
+
+4. **Interação via Node-RED**:
+   - Importe os fluxos do Node-RED fornecidos no repositório.
+   - Monitore e visualize as leituras de temperatura em tempo real.
+
+## Requisitos e Dependências
+
+### Requisitos
+- **Hardware**:
+  - Microcontrolador ESP32
+  - Sensor DS18B20
+  - Display LCD (I2C)
+- **Software**:
+  - Arduino IDE
+  - Node-RED instalado em um servidor ou localmente
+  - Acesso à internet para broker MQTT
+
+### Dependências
+- **Bibliotecas do Arduino**:
+  - `OneWire.h`
+  - `DallasTemperature.h`
+  - `WiFi.h`
+  - `PubSubClient.h`
+  - `ArduinoJson.h`
+  - `LiquidCrystal_I2C.h`
 
 ## Integração com Node-RED
 
