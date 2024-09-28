@@ -1,5 +1,8 @@
 # Monitoramento de Temperatura com MQTT
 
+# LINK DO PROJETO NO WOKWI
+https://wokwi.com/projects/410187774024993793
+
 Este projeto demonstra como usar um microcontrolador ESP32 para ler dados de temperatura de um sensor DS18B20 e publicar esses dados em um broker MQTT. Além disso, as mensagens são exibidas em um display(LCD) e o sistema é capaz de receber mensagens do broker.
 
 ## Componentes Necessários
