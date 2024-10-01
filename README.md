@@ -1,5 +1,9 @@
 # Monitoramento de Temperatura com MQTT
-
+## Rodrigo H M Nakata 556417
+## Gabriel Henrique Padula 554907
+## Enzo GaiÃ£o Real 557943
+##  Gustavo Pasquini Lucas 555454
+## Vitor Couto Victorino 554965
 # LINK DO PROJETO NO WOKWI
 https://wokwi.com/projects/410187774024993793
 
